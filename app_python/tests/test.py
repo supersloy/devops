@@ -1,5 +1,5 @@
-from flask.testing import FlaskClient
 import datetime
+from flask.testing import FlaskClient
 
 
 def get_moscow_time():

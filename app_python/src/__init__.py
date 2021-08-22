@@ -3,6 +3,7 @@ from flask import Flask, render_template, Response
 
 
 def create_app():
+    """Create flask application with clock functionality"""
     app = Flask(__name__)
 
     def get_current_time(timezone_offset=3):
