@@ -4,12 +4,12 @@
     <meta charset="UTF-8">
     <title>Simple clock</title>
     <link rel="icon" href="https://image.flaticon.com/icons/png/512/2088/2088617.png">
-     <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/style.css') }}">
+     <link rel="stylesheet" type="text/css" href="{{ url_for('static',filename='styles/styles.css') }}">
 </head>
 
 <body>
     <div class="clock">
-        <p class="clock__text">Current time in Moscow (GMT+3):</p>
+        <p class="clock__text">Current time in Moscow (GMT+3)</p>
         <span class="clock__time">{{time}}</span>
     </div>
 </body>

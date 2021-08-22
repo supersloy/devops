@@ -1,0 +1,26 @@
+.clock {
+    margin: 50px auto;
+    display: flex;
+    flex-direction: column;
+    align-content: center;
+    align-items: center;
+    border: thick double saddlebrown;
+
+
+    background-color: bisque;
+    width: 700px;
+    height: 250px;
+    border-radius: 20px;
+}
+.clock__text {
+    font-family: sans-serif;
+    font-size: 40px;
+}
+.clock__time {
+    font-family: sans-serif;
+    font-size: 80px;
+}
+body {
+    background-color: darksalmon;
+    background-image: url("https://7oom.ru/wp-content/uploads/peizaji-02.jpg");
+}
