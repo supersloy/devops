@@ -20,6 +20,7 @@
         fetch("/api/time")
             .then(res => res.text())
             .then(time => timeElement.innerHTML = time)
+            .catch(err => {})
     }, 1000)
 
 </script>
