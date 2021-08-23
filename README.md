@@ -33,11 +33,10 @@ pip3 install -r requirements.txt #Other OS
 Program can be easily executed after installation via the command
 
 ```shell
+    #From app_python folder
     python app.py #Windows
     python3 app.py #Other OS    
 ```
-
-Note: Command should be run inside the app_python folder
 
 #### Run tests
 
@@ -45,6 +44,27 @@ Tests can be executed via the command
 
 ```shell
     pytest
+```
+
+## Docker
+
+#### Build
+
+```shell
+docker build --tag app --target build . #From app_python folder
+```
+
+#### Run
+
+```shell
+docker run -publish HOST_MACHINE_PORT:5000 app
+```
+
+#### Download and run container from dockerhub
+
+```shell
+docker pull supersloy/devops
+docker run -publish HOST_MACHINE_PORT:5000 supersloy/devops
 ```
 
 ## Author
