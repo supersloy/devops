@@ -1,6 +1,4 @@
-
-
-## Best practices
+# Python app best practices
 
 #### Virtual environment
 
