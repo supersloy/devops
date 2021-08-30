@@ -18,4 +18,23 @@ Src layout with additional folders for static files and tests lead to better nav
 
 #### Utilization of suitable technologies
 
-As the given application does not require connection with databases, high availability for multiple requests simultaneously or hard computation Flask framework is used as it is more suitable for tasks of that degree.
+As the given application does not require connection with databases, high availability for multiple requests simultaneously or hard computation Flask framework is used as it is more suitable for tasks of that degree
+
+# Unit tests
+
+### Current unit tests
+
+- test_status_codes: check all endpoints on 2xx status codes
+- test_correct_time_main_page: test the main page on showing the current Moscow time
+- test_correct_time_data: test /api/time endpoint on providing the current Moscow time
+
+### Unit tests best practices
+
+- Adopt a well organized test practices
+Check status codes before production code. Utilize TTD, mutation testing,  behavior-driven programming when suitable.
+- Utilize consistent naming style
+- Focus on single use case
+- Minimize assertions per tests
+- Make unit test isolated
+- Try to cover most of the functionality
+- Make tests deterministic
