@@ -31,3 +31,20 @@
   Store dependencies/build cache
 
 ## Jenkins
+
+- Utilize Jenkins credentials instead of hardcode secret codes
+
+  Similiar to GitHub environment secrets
+
+- Run unit tests and linters as part of pipeline
+
+- Avoiding very large shared packages
+
+  Use shared libraries in order to achieve that
+
+- Use declarative syntax
+
+- Avoid DiD (Docker in Docker)
+
+
+
