@@ -47,7 +47,7 @@ python3 app.py #Other OS
 Tests can be executed via the command
 
 ```shell
-    pytest
+pytest
 ```
 
 ## Docker

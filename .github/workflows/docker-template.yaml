@@ -1,9 +1,9 @@
-name: Python Docker app docker image
+name: Python clock app docker image
 
 on:
   release:
     tags:
-      - "python"
+      - "docker"
 
 jobs:
   build:
