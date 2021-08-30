@@ -1,3 +1,4 @@
+![example workflow](https://github.com/supersloy/devops/actions/workflows/python-template.yaml/badge.svg)
 # DevOps project: Clock application
 
 The project itself is SPA(Single Page Application) that display current time in Moscow.
