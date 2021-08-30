@@ -33,10 +33,12 @@ pip3 install -r requirements.txt #Other OS
 Program can be easily executed after installation via the command
 
 ```shell
-    #From app_python folder
-    python app.py #Windows
-    python3 app.py #Other OS    
+#From app_python folder
+python app.py #Windows
+python3 app.py #Other OS    
 ```
+
+## Unit tests
 
 #### Run tests
 
