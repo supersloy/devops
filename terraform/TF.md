@@ -16,4 +16,4 @@
 - Do not repeat resource type in resource name
 - Always use singular nouns for names
 
-Source: https://www.terraform-best-practices.com/
+**Source**: https://www.terraform-best-practices.com/
