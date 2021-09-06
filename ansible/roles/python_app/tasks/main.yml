@@ -1,0 +1,23 @@
+---
+- name: Install pip latest version
+  apt: name=python3-pip state=present
+
+- name: Install docker-compose
+  pip:
+    name: docker-compose
+
+- name: Make directory for application
+  file:
+    path: "{{ opt_path }}"
+    state: directory
+    mode: a+rw
+
+- name: Add docker-compose to made directory
+  template:
+    src: docker-compose.yml.j2
+    dest: "{{ opt_path }}/docker-compose.yaml"
+    mode: preserve
+
+- name: Start docker-compose
+  docker_compose:
+    project_src: "{{ opt_path }}"

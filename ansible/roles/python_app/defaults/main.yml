@@ -1,0 +1,5 @@
+---
+port_host: "80"
+port_container: "5000"
+opt_path: /opt/app
+image: supersloy/devops

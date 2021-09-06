@@ -1,0 +1,7 @@
+version: '3.7'
+services:
+ clock_app:
+   image: {{ image }}
+   container_name: clock_app
+   ports:
+     - "{{ port_host }}:{{ port_container }}"
