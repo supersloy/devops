@@ -1,5 +1,5 @@
 ---
-- name: Aboba
+- name: Install docker
   hosts: localhost
   tasks:
     - name: Install Docker
