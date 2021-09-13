@@ -11,8 +11,8 @@ docker-compose up #From monitoring folder
 ### Usage
 
 Open [http://localhost:3000](http://localhost:3000/) in your browser to open Grafana. 
-Add loki as a source by using URL: ```http://loki:3100```.
-After that you can view logs in `Explore` section.
+Add loki or prometheus as a source by using URL: ```http://loki:3100``` for loki and `http://prometheus:9090` for prometheus.
+After that you can view logs in `Explore` section and add dashboard using previously defined sources.
 
 ## Best practices
 
@@ -43,5 +43,9 @@ After that you can view logs in `Explore` section.
 ![](\screenshots\Docker state.PNG)
 
 ![](\screenshots\Loki.PNG)
+
+![](\screenshots\Prometheus targets.PNG)
+
+![](\screenshots\Prometheus dashboard.PNG)
 
 (All screenshots are in `screenshots` folder)
