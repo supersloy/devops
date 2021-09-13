@@ -1,0 +1,55 @@
+version: '3.7'
+
+networks:
+  loki:
+
+services:
+
+  myapp:
+    image: supersloy/devops:latest
+    ports:
+      - "80:5000"
+    networks:
+      - loki
+    logging:
+      driver: "json-file"
+      options:
+        tag: "{{.ImageName}}|{{.Name}}|{{.ImageFullID}}|{{.FullID}}"
+
+  loki:
+    image: grafana/loki:2.0.0
+    container_name: monitoring.loki
+    expose:
+      - 3100
+    ports:
+      - "3100:3100"
+    command: -config.file=/etc/loki/local-config.yaml
+    restart: unless-stopped
+    networks:
+      - loki
+
+  promtail:
+    image: grafana/promtail:2.0.0
+    container_name: monitoring.promtail
+    expose:
+      - 9080
+    ports:
+      - "9080:9080"
+    volumes:
+      - /var/lib/docker/containers/:/var/lib/docker/containers
+      - ./docker-config.yml:/etc/promtail/docker-config.yml
+    command: -config.file=/etc/promtail/docker-config.yml
+    restart: unless-stopped
+    networks:
+      - loki
+
+  grafana:
+    image: grafana/grafana:master
+    container_name: monitoring.grafana
+    restart: unless-stopped
+    expose:
+      - 3000
+    ports:
+      - "3000:3000"
+    networks:
+      - loki
