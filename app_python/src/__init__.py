@@ -13,7 +13,7 @@ def create_app():
 
     @app.route('/')
     def get_main_page():
-        f = open('/visits.txt','a')
+        f = open('/visits.txt','a+')
         f.write(f"{datetime.datetime.now()} \n")
         return render_template('index.html', time=get_current_time())
 
