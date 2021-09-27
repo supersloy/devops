@@ -8,6 +8,8 @@ services:
   myapp:
     image: supersloy/devops:latest
     container_name: myapp
+    volumes:
+      - ./visits.txt:/visits.txt
     ports:
       - "80:5000"
     networks:
