@@ -45,6 +45,8 @@ spec:
           volumeMounts:
             - name: {{ .Values.volumeClaim.name }}
               mountPath: {{ .Values.volumeClaim.mountPath }}
+            - name: workdir
+              mountPath: /workdir
           ports:
             - name: http
               containerPort: 10101
@@ -61,6 +63,21 @@ spec:
               port: http
           resources:
             {{- toYaml .Values.resources | nindent 12 }}
+      initContainers:
+      - name: install
+        image: busybox
+        command:
+        - wget
+        - "-O"
+        - "/work-dir/index.html"
+        - http://info.cern.ch
+        volumeMounts:
+        - name: workdir
+          mountPath: "/work-dir"
+      dnsPolicy: Default
+      volumes:
+        - name: workdir
+          emptyDir: {}
       {{- with .Values.nodeSelector }}
       nodeSelector:
         {{- toYaml . | nindent 8 }}

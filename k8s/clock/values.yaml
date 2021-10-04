@@ -48,6 +48,18 @@ volumeClaim:
   name: volume
   mountPath: /data
 
+# init:
+#   name: install
+#   volume:
+#     name: initVolume
+#     mountPath: /init
+#   volumeMount: "/work-dir"
+#   file:
+#     path: "/work-dir/example.html"
+#     downloadPath: http://info.cern.ch
+  
+  
+
 ingress:
   enabled: false
   className: ""
