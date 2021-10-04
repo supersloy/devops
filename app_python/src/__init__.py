@@ -7,15 +7,16 @@ def create_app():
     app = Flask(__name__)
 
     def get_current_time(timezone_offset=3):
-        timezone_info = datetime.timezone(datetime.timedelta(hours=timezone_offset))
+        timezone_info = datetime.timezone(
+            datetime.timedelta(hours=timezone_offset))
         current_time = datetime.datetime.now(timezone_info)
         return current_time.strftime('%H:%M:%S')
 
     @app.route('/')
     def get_main_page():
-        f = open('/visits.txt','a+')
-        f.write(f"{datetime.datetime.now()} \n")
-        return render_template('index.html', time=get_current_time())
+        with open('/data/visits', 'a+') as f:
+            f.write(f"{datetime.datetime.now()} \n")
+            return render_template('index.html', time=get_current_time())
 
     @app.route('/api/time')
     def get_time():
@@ -23,8 +24,7 @@ def create_app():
 
     @app.route('/visits')
     def visits():
-        f = open('/visits.txt','r')
-        return f.readlines()
-
+        with open('/data/visits', 'r') as f:
+            return f.readlines()
 
     return app

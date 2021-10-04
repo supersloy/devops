@@ -5,4 +5,5 @@ COPY . .
 RUN pip install -r requirements.txt && adduser appusr
 USER appusr
 
+EXPOSE 10101
 CMD ["python","main.py"]

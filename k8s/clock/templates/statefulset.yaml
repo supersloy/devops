@@ -1,11 +1,13 @@
 apiVersion: apps/v1
-kind: Deployment
+kind: StatefulSet
 metadata:
   name: {{ include "clock.fullname" . }}
   labels:
     {{- include "clock.labels" . | nindent 4 }}
 spec:
   {{- if not .Values.autoscaling.enabled }}
+  serviceName: {{  include "clock.fullname" . }}
+  podManagementPolicy: "Parallel"
   replicas: {{ .Values.replicaCount }}
   {{- end }}
   selector:
@@ -27,37 +29,33 @@ spec:
       serviceAccountName: {{ include "clock.serviceAccountName" . }}
       securityContext:
         {{- toYaml .Values.podSecurityContext | nindent 8 }}
-      volumes:
-        - name: config-volume
-          configMap:
-            name: config.json
       containers:
         - name: {{ .Chart.Name }}
           securityContext:
             {{- toYaml .Values.securityContext | nindent 12 }}
           image: "{{ .Values.image.repository }}:{{ .Values.image.tag | default .Chart.AppVersion }}"
           imagePullPolicy: {{ .Values.image.pullPolicy }}
-          env:
-            - name: SECRET
-              valueFrom:
-                secretKeyRef:
-                  name: secret-key
-                  key: secret
+          # env:
+          #   - name: FILEPATH
+          #     value: {{ .Values.envs.filepath }}
+          # volumeMounts:
+          #   - name: config-volume
+          #     mountPath: /config.json
+          #     subPath: config.json
           volumeMounts:
-            - name: config-volume
-              mountPath: /config.json
-              subPath: config.json
+            - name: {{ .Values.volumeClaim.name }}
+              mountPath: {{ .Values.volumeClaim.mountPath }}
           ports:
             - name: http
               containerPort: 10101
               protocol: TCP
           livenessProbe:
-            initialDelaySeconds: 50
+            # initialDelaySeconds: 50
             httpGet:
               path: /
               port: http
           readinessProbe:
-            initialDelaySeconds: 50
+            # initialDelaySeconds: 50
             httpGet:
               path: /
               port: http
@@ -74,4 +72,13 @@ spec:
       {{- with .Values.tolerations }}
       tolerations:
         {{- toYaml . | nindent 8 }}
-      {{- end }}
+      {{- end }}   
+  volumeClaimTemplates:
+  - metadata:
+      name: {{ .Values.volumeClaim.name }}
+    spec:
+      accessModes: [ "ReadWriteOnce" ]
+      # storageClassName: "storage-class-name"
+      resources:
+        requests:
+          storage: 64Mi

@@ -6,14 +6,14 @@ replicaCount: 3
 
 image:
   repository: supersloy/devops
-  pullPolicy: IfNotPresent
+  pullPolicy: Always
   # Overrides the image tag whose default is the chart appVersion.
   tag: "latest"
 
 imagePullSecrets: []
 nameOverride: ""
 fullnameOverride: ""
-secretkey: mySecretKey
+# secretkey: mySecretKey
 
 serviceAccount:
   # Specifies whether a service account should be created
@@ -40,6 +40,13 @@ securityContext: {}
 service:
   type: LoadBalancer
   port: 10101
+
+envs:
+  filepath: /data/visits
+
+volumeClaim:
+  name: volume
+  mountPath: /data
 
 ingress:
   enabled: false

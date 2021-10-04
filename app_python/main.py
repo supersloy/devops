@@ -5,7 +5,7 @@ from src import create_app
 if __name__ == '__main__':
     app = create_app()
 
-    SERVER_PORT = int(os.environ.get("PORT", "5000"))
+    SERVER_PORT = int(os.environ.get("PORT", "10101"))
     SERVER_IP = os.environ.get("HOST_IP", "0.0.0.0")
 
     server = WSGIServer((SERVER_IP, SERVER_PORT), app)
